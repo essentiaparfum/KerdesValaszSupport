@@ -5,12 +5,15 @@ namespace KerdesValaszSupport
 {
     public partial class AnswerDialog : Form
     {
+        public int QuestionID { get; set; }
+
         private string _answerText;
         private string _valueCode;
         private int _sortOrder;
 
-        public int QuestionID { get; set; }
-
+        /// <summary>
+        /// A válasz szövege
+        /// </summary>
         public string AnswerText
         {
             get => _answerText;
@@ -22,17 +25,18 @@ namespace KerdesValaszSupport
             }
         }
 
+        /// <summary>
+        /// A kiválasztott illatkategória kódja
+        /// </summary>
         public string ValueCode
         {
             get => _valueCode;
-            set
-            {
-                _valueCode = value;
-                if (txtValueCode != null)
-                    txtValueCode.Text = value ?? string.Empty;
-            }
+            set => _valueCode = value;
         }
 
+        /// <summary>
+        /// A megjelenési sorrend száma
+        /// </summary>
         public int SortOrder
         {
             get => _sortOrder;
@@ -51,17 +55,51 @@ namespace KerdesValaszSupport
             }
         }
 
+        // A legördülő lista elemei
+        private static readonly string[] Categories = new[]
+        {
+            "Fás illatok",
+            "Friss illatok",
+            "Fűszeres illatok",
+            "Púderes illatok",
+            "Édes illatok",
+            "Gyümölcsös illatok",
+            "Orientális illatok",
+            "Virágos illatok"
+        };
+
         public AnswerDialog()
         {
             InitializeComponent();
-            // Logikai rész: a property setter már beállította a mezőket
+
+            // Combobox feltöltése a kategóriákkal
+            cmbCategory.Items.AddRange(Categories);
+
+            // A korábban beállított válasz szöveg és sorrend
+            txtAnswer.Text = _answerText ?? string.Empty;
+            SortOrder = _sortOrder;    // ez már belül helyesen korlátozza numSort.Value-t
+
+            // Ha volt korábbi ValueCode, akkor jelöljük ki
+            if (!string.IsNullOrEmpty(_valueCode) && cmbCategory.Items.Contains(_valueCode))
+                cmbCategory.SelectedItem = _valueCode;
+            else
+                cmbCategory.SelectedIndex = -1;
         }
 
         private void btnOK_Click(object sender, EventArgs e)
         {
+            // 1) Szöveg mentése
             AnswerText = txtAnswer.Text.Trim();
-            ValueCode = txtValueCode.Text.Trim();
+
+            // 2) Kategória mentése
+            if (cmbCategory.SelectedIndex >= 0)
+                ValueCode = cmbCategory.SelectedItem.ToString();
+            else
+                ValueCode = null;
+
+            // 3) Sorrend mentése
             SortOrder = (int)numSort.Value;
+
             DialogResult = DialogResult.OK;
         }
 
