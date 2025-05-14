@@ -11,7 +11,7 @@ namespace KerdesValaszSupport
     public partial class Form1 : Form
     {
         private readonly string _conn = ConfigurationManager
-            .ConnectionStrings["ProbaDb"].ConnectionString;
+            .ConnectionStrings["SajatDNN"].ConnectionString;
         private DataTable _questionsTable;
         private DataTable _answersTable;
 
@@ -250,5 +250,98 @@ WHERE AnswerID = @id;";
             }
             LoadAnswers(qid);
         }
+
+        private void btnShowResults_Click(object sender, EventArgs e)
+        {
+            const string sql = @"
+WITH Detail AS
+(
+    SELECT
+      q.SortOrder      AS QSort,
+      q.QuestionID,
+      q.QuestionText,
+      a.SortOrder      AS ASort,
+      a.AnswerID,
+      a.AnswerText,
+      a.ValueCode      AS AnswerValue,
+      COUNT(ua.AnswerID) AS VoteCount
+    FROM dbo.PerfumeQuestions q
+    JOIN dbo.PerfumeAnswers a
+      ON a.QuestionID = q.QuestionID
+    LEFT JOIN dbo.PerfumeUserAnswer ua
+      ON ua.QuestionID  = q.QuestionID
+     AND ua.AnswerValue = a.ValueCode
+    GROUP BY
+      q.SortOrder,
+      q.QuestionID,
+      q.QuestionText,
+      a.SortOrder,
+      a.AnswerID,
+      a.AnswerText,
+      a.ValueCode
+),
+Summary AS
+(
+    SELECT
+      NULL             AS QSort,
+      NULL             AS QuestionID,
+      'Összesen'       AS QuestionText,
+      NULL             AS ASort,
+      NULL             AS AnswerID,
+      NULL             AS AnswerText,
+      ua.AnswerValue,
+      COUNT(*)         AS VoteCount
+    FROM dbo.PerfumeUserAnswer ua
+    GROUP BY ua.AnswerValue
+)
+SELECT
+  QuestionID,
+  QuestionText,
+  AnswerID,
+  AnswerText,
+  AnswerValue,
+  VoteCount
+FROM
+(
+  SELECT * FROM Detail
+  UNION ALL
+  SELECT * FROM Summary
+) AS AllStats
+ORDER BY
+  CASE WHEN QuestionID IS NULL THEN 1 ELSE 0 END,
+  QSort,
+  ASort,
+  CASE WHEN QuestionID IS NULL THEN AnswerValue END;
+";
+
+
+
+
+            DataTable dt = new DataTable();
+            using (var conn = new SqlConnection(_conn))
+            using (var cmd = new SqlCommand(sql, conn))
+            using (var da = new SqlDataAdapter(cmd))
+            {
+                da.Fill(dt);
+            }
+
+            // Eredmény megjelenítése egy új Formon vagy GridView-ben
+            using (var dlg = new Form())
+            {
+                dlg.Text = "Összes eredmény";
+                var grid = new DataGridView
+                {
+                    Dock = DockStyle.Fill,
+                    DataSource = dt,
+                    ReadOnly = true,
+                    AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+                };
+                dlg.Controls.Add(grid);
+                dlg.StartPosition = FormStartPosition.CenterParent;
+                dlg.Size = new Size(700, 400);
+                dlg.ShowDialog(this);
+            }
+        }
+
     }
 }
