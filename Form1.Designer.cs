@@ -22,139 +22,161 @@
 
         private void InitializeComponent()
         {
-            this.dgvQuestions = new System.Windows.Forms.DataGridView();
-            this.dgvAnswers = new System.Windows.Forms.DataGridView();
-            this.btnAddQuestion = new System.Windows.Forms.Button();
-            this.btnEditQuestion = new System.Windows.Forms.Button();
-            this.btnDeleteQuestion = new System.Windows.Forms.Button();
-            this.btnAddAnswer = new System.Windows.Forms.Button();
-            this.btnEditAnswer = new System.Windows.Forms.Button();
-            this.btnDeleteAnswer = new System.Windows.Forms.Button();
-            this.btnShowResults = new System.Windows.Forms.Button();
-
-            ((System.ComponentModel.ISupportInitialize)(this.dgvQuestions)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvAnswers)).BeginInit();
-            this.SuspendLayout();
-
+            dgvQuestions = new DataGridView();
+            dgvAnswers = new DataGridView();
+            btnAddQuestion = new Button();
+            btnEditQuestion = new Button();
+            btnDeleteQuestion = new Button();
+            btnAddAnswer = new Button();
+            btnEditAnswer = new Button();
+            btnDeleteAnswer = new Button();
+            btnShowResults = new Button();
+            textBox1 = new TextBox();
+            ((System.ComponentModel.ISupportInitialize)dgvQuestions).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvAnswers).BeginInit();
+            SuspendLayout();
             // 
             // dgvQuestions
             // 
-            this.dgvQuestions.Location = new System.Drawing.Point(12, 12);
-            this.dgvQuestions.MultiSelect = false;
-            this.dgvQuestions.Name = "dgvQuestions";
-            this.dgvQuestions.ReadOnly = true;
-            this.dgvQuestions.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvQuestions.Size = new System.Drawing.Size(400, 300);
-            this.dgvQuestions.TabIndex = 0;
-            this.dgvQuestions.SelectionChanged += new System.EventHandler(this.dgvQuestions_SelectionChanged);
-
+            dgvQuestions.BackgroundColor = Color.White;
+            dgvQuestions.GridColor = Color.DarkMagenta;
+            dgvQuestions.Location = new Point(13, 48);
+            dgvQuestions.MultiSelect = false;
+            dgvQuestions.Name = "dgvQuestions";
+            dgvQuestions.ReadOnly = true;
+            dgvQuestions.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvQuestions.Size = new Size(400, 300);
+            dgvQuestions.TabIndex = 0;
+            dgvQuestions.SelectionChanged += dgvQuestions_SelectionChanged;
             // 
             // dgvAnswers
             // 
-            this.dgvAnswers.Location = new System.Drawing.Point(430, 12);
-            this.dgvAnswers.MultiSelect = false;
-            this.dgvAnswers.Name = "dgvAnswers";
-            this.dgvAnswers.ReadOnly = true;
-            this.dgvAnswers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvAnswers.Size = new System.Drawing.Size(400, 300);
-            this.dgvAnswers.TabIndex = 1;
-
+            dgvAnswers.BackgroundColor = Color.White;
+            dgvAnswers.GridColor = Color.DarkMagenta;
+            dgvAnswers.Location = new Point(431, 48);
+            dgvAnswers.MultiSelect = false;
+            dgvAnswers.Name = "dgvAnswers";
+            dgvAnswers.ReadOnly = true;
+            dgvAnswers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvAnswers.Size = new Size(400, 300);
+            dgvAnswers.TabIndex = 1;
             // 
             // btnAddQuestion
             // 
-            this.btnAddQuestion.Location = new System.Drawing.Point(12, 320);
-            this.btnAddQuestion.Name = "btnAddQuestion";
-            this.btnAddQuestion.Size = new System.Drawing.Size(75, 23);
-            this.btnAddQuestion.TabIndex = 2;
-            this.btnAddQuestion.Text = "Új kérdés";
-            this.btnAddQuestion.UseVisualStyleBackColor = true;
-            this.btnAddQuestion.Click += new System.EventHandler(this.btnAddQuestion_Click);
-
+            btnAddQuestion.BackColor = Color.MediumVioletRed;
+            btnAddQuestion.ForeColor = SystemColors.Control;
+            btnAddQuestion.Location = new Point(13, 356);
+            btnAddQuestion.Name = "btnAddQuestion";
+            btnAddQuestion.Size = new Size(75, 23);
+            btnAddQuestion.TabIndex = 2;
+            btnAddQuestion.Text = "Új kérdés";
+            btnAddQuestion.UseVisualStyleBackColor = false;
+            btnAddQuestion.Click += btnAddQuestion_Click;
             // 
             // btnEditQuestion
             // 
-            this.btnEditQuestion.Location = new System.Drawing.Point(93, 320);
-            this.btnEditQuestion.Name = "btnEditQuestion";
-            this.btnEditQuestion.Size = new System.Drawing.Size(75, 23);
-            this.btnEditQuestion.TabIndex = 3;
-            this.btnEditQuestion.Text = "Módosít";
-            this.btnEditQuestion.UseVisualStyleBackColor = true;
-            this.btnEditQuestion.Click += new System.EventHandler(this.btnEditQuestion_Click);
-
+            btnEditQuestion.BackColor = Color.MediumVioletRed;
+            btnEditQuestion.ForeColor = SystemColors.Control;
+            btnEditQuestion.Location = new Point(94, 356);
+            btnEditQuestion.Name = "btnEditQuestion";
+            btnEditQuestion.Size = new Size(75, 23);
+            btnEditQuestion.TabIndex = 3;
+            btnEditQuestion.Text = "Módosít";
+            btnEditQuestion.UseVisualStyleBackColor = false;
+            btnEditQuestion.Click += btnEditQuestion_Click;
             // 
             // btnDeleteQuestion
             // 
-            this.btnDeleteQuestion.Location = new System.Drawing.Point(174, 320);
-            this.btnDeleteQuestion.Name = "btnDeleteQuestion";
-            this.btnDeleteQuestion.Size = new System.Drawing.Size(75, 23);
-            this.btnDeleteQuestion.TabIndex = 4;
-            this.btnDeleteQuestion.Text = "Töröl";
-            this.btnDeleteQuestion.UseVisualStyleBackColor = true;
-            this.btnDeleteQuestion.Click += new System.EventHandler(this.btnDeleteQuestion_Click);
-
+            btnDeleteQuestion.BackColor = Color.MediumVioletRed;
+            btnDeleteQuestion.ForeColor = SystemColors.Control;
+            btnDeleteQuestion.Location = new Point(175, 356);
+            btnDeleteQuestion.Name = "btnDeleteQuestion";
+            btnDeleteQuestion.Size = new Size(75, 23);
+            btnDeleteQuestion.TabIndex = 4;
+            btnDeleteQuestion.Text = "Töröl";
+            btnDeleteQuestion.UseVisualStyleBackColor = false;
+            btnDeleteQuestion.Click += btnDeleteQuestion_Click;
             // 
             // btnAddAnswer
             // 
-            this.btnAddAnswer.Location = new System.Drawing.Point(430, 320);
-            this.btnAddAnswer.Name = "btnAddAnswer";
-            this.btnAddAnswer.Size = new System.Drawing.Size(75, 23);
-            this.btnAddAnswer.TabIndex = 5;
-            this.btnAddAnswer.Text = "Új válasz";
-            this.btnAddAnswer.UseVisualStyleBackColor = true;
-            this.btnAddAnswer.Click += new System.EventHandler(this.btnAddAnswer_Click);
-
+            btnAddAnswer.BackColor = Color.MediumVioletRed;
+            btnAddAnswer.ForeColor = SystemColors.Control;
+            btnAddAnswer.Location = new Point(431, 356);
+            btnAddAnswer.Name = "btnAddAnswer";
+            btnAddAnswer.Size = new Size(75, 23);
+            btnAddAnswer.TabIndex = 5;
+            btnAddAnswer.Text = "Új válasz";
+            btnAddAnswer.UseVisualStyleBackColor = false;
+            btnAddAnswer.Click += btnAddAnswer_Click;
             // 
             // btnEditAnswer
             // 
-            this.btnEditAnswer.Location = new System.Drawing.Point(511, 320);
-            this.btnEditAnswer.Name = "btnEditAnswer";
-            this.btnEditAnswer.Size = new System.Drawing.Size(75, 23);
-            this.btnEditAnswer.TabIndex = 6;
-            this.btnEditAnswer.Text = "Módosít";
-            this.btnEditAnswer.UseVisualStyleBackColor = true;
-            this.btnEditAnswer.Click += new System.EventHandler(this.btnEditAnswer_Click);
-
+            btnEditAnswer.BackColor = Color.MediumVioletRed;
+            btnEditAnswer.ForeColor = SystemColors.Control;
+            btnEditAnswer.Location = new Point(512, 356);
+            btnEditAnswer.Name = "btnEditAnswer";
+            btnEditAnswer.Size = new Size(75, 23);
+            btnEditAnswer.TabIndex = 6;
+            btnEditAnswer.Text = "Módosít";
+            btnEditAnswer.UseVisualStyleBackColor = false;
+            btnEditAnswer.Click += btnEditAnswer_Click;
             // 
             // btnDeleteAnswer
             // 
-            this.btnDeleteAnswer.Location = new System.Drawing.Point(592, 320);
-            this.btnDeleteAnswer.Name = "btnDeleteAnswer";
-            this.btnDeleteAnswer.Size = new System.Drawing.Size(75, 23);
-            this.btnDeleteAnswer.TabIndex = 7;
-            this.btnDeleteAnswer.Text = "Töröl";
-            this.btnDeleteAnswer.UseVisualStyleBackColor = true;
-            this.btnDeleteAnswer.Click += new System.EventHandler(this.btnDeleteAnswer_Click);
-
+            btnDeleteAnswer.BackColor = Color.MediumVioletRed;
+            btnDeleteAnswer.ForeColor = SystemColors.Control;
+            btnDeleteAnswer.Location = new Point(593, 356);
+            btnDeleteAnswer.Name = "btnDeleteAnswer";
+            btnDeleteAnswer.Size = new Size(75, 23);
+            btnDeleteAnswer.TabIndex = 7;
+            btnDeleteAnswer.Text = "Töröl";
+            btnDeleteAnswer.UseVisualStyleBackColor = false;
+            btnDeleteAnswer.Click += btnDeleteAnswer_Click;
             // 
             // btnShowResults
             // 
-            this.btnShowResults.Location = new System.Drawing.Point(322, 320);
-            this.btnShowResults.Name = "btnShowResults";
-            this.btnShowResults.Size = new System.Drawing.Size(90, 23);
-            this.btnShowResults.TabIndex = 8;
-            this.btnShowResults.Text = "Eredmények";
-            this.btnShowResults.UseVisualStyleBackColor = true;
-            this.btnShowResults.Click += new System.EventHandler(this.btnShowResults_Click);
-
+            btnShowResults.BackColor = Color.MediumVioletRed;
+            btnShowResults.ForeColor = SystemColors.Control;
+            btnShowResults.Location = new Point(323, 356);
+            btnShowResults.Name = "btnShowResults";
+            btnShowResults.Size = new Size(90, 23);
+            btnShowResults.TabIndex = 8;
+            btnShowResults.Text = "Eredmények";
+            btnShowResults.UseVisualStyleBackColor = false;
+            btnShowResults.Click += btnShowResults_Click;
+            // 
+            // textBox1
+            // 
+            textBox1.BackColor = Color.Plum;
+            textBox1.BorderStyle = BorderStyle.None;
+            textBox1.ForeColor = SystemColors.InactiveCaptionText;
+            textBox1.Location = new Point(13, 12);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(166, 16);
+            textBox1.TabIndex = 9;
+            textBox1.Text = "ESSENTIA TESZT SZERKESZTŐ";
             // 
             // Form1
             // 
-            this.ClientSize = new System.Drawing.Size(844, 360);
-            this.Controls.Add(this.btnShowResults);
-            this.Controls.Add(this.btnDeleteAnswer);
-            this.Controls.Add(this.btnEditAnswer);
-            this.Controls.Add(this.btnAddAnswer);
-            this.Controls.Add(this.btnDeleteQuestion);
-            this.Controls.Add(this.btnEditQuestion);
-            this.Controls.Add(this.btnAddQuestion);
-            this.Controls.Add(this.dgvAnswers);
-            this.Controls.Add(this.dgvQuestions);
-            this.Name = "Form1";
-            this.Text = "Kérdés–Válasz Szerkesztő";
-
-            ((System.ComponentModel.ISupportInitialize)(this.dgvQuestions)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvAnswers)).EndInit();
-            this.ResumeLayout(false);
+            BackColor = Color.Plum;
+            ClientSize = new Size(867, 398);
+            Controls.Add(textBox1);
+            Controls.Add(btnShowResults);
+            Controls.Add(btnDeleteAnswer);
+            Controls.Add(btnEditAnswer);
+            Controls.Add(btnAddAnswer);
+            Controls.Add(btnDeleteQuestion);
+            Controls.Add(btnEditQuestion);
+            Controls.Add(btnAddQuestion);
+            Controls.Add(dgvAnswers);
+            Controls.Add(dgvQuestions);
+            Name = "Form1";
+            Text = "Kérdés–Válasz Szerkesztő";
+            ((System.ComponentModel.ISupportInitialize)dgvQuestions).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvAnswers).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
+        private TextBox textBox1;
     }
 }
