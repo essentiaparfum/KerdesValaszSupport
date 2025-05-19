@@ -347,5 +347,11 @@ ORDER BY
         {
 
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            dgvAnswers.EnableHeadersVisualStyles = false;
+            dgvQuestions.EnableHeadersVisualStyles = false;
+        }
     }
 }
